@@ -561,7 +561,7 @@ function AddRecipeModal({ profile, onClose, onSaved }) {
   headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${sessionData.session.access_token}` },
         body: JSON.stringify({
           model: CLAUDE_MODEL,
-          max_tokens: 1000,
+          max_tokens: 4000,
           system: `You are a recipe parser. Given any recipe text, extract and return ONLY valid JSON with this structure:
 {
   "title": "Recipe name",
