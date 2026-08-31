@@ -555,9 +555,10 @@ function AddRecipeModal({ profile, onClose, onSaved }) {
     if (!rawText.trim()) return;
     setParsing(true); setError('');
     try {
+      const { data: sessionData } = await supabase.auth.getSession();
     const response = await fetch('https://rjglnszletpogjzvxzuk.supabase.co/functions/v1/parse-recipe', {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}` },
+  headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${sessionData.session.access_token}` },
         body: JSON.stringify({
           model: CLAUDE_MODEL,
           max_tokens: 1000,
